@@ -703,20 +703,7 @@ def render_take_survey_page(app: SurveyApp) -> None:
                 student_id: str = st.text_input("Student ID", placeholder="Digits only")
                 start_clicked: bool = st.form_submit_button("Start questionnaire", use_container_width=True)
 
-        with col_right:
-            st.markdown(
-                f"""
-                <div class="tip-card">
-                    <div class="section-title">Before you begin</div>
-                    <p class="soft-text">• {len(app.questions)} original questions</p>
-                    <p class="soft-text">• 5 answer options for each item</p>
-                    <p class="soft-text">• Result can be saved as TXT, CSV, or JSON</p>
-                    <p class="soft-text">• Questions load from an external file with a built-in fallback</p>
-                </div>
-                """,
-                unsafe_allow_html=True,
-            )
-
+       
         st.markdown('</div>', unsafe_allow_html=True)
 
         if start_clicked:
