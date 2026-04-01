@@ -481,72 +481,44 @@ class SurveyApp:
                 del st.session_state[key]
 
 
-def inject_styles() -> None:
+def render_personal_info():
+    import streamlit as st
+
+    # Main card START
+    st.markdown('<div class="main-card">', unsafe_allow_html=True)
+
+    # Badge
     st.markdown(
-        """
-        <style>
-            .stApp {
-                background: linear-gradient(135deg, #eef4ff 0%, #f8f4ff 45%, #fffaf4 100%);
-            }
-            .main-card {
-                background: rgba(255, 255, 255, 0.88);
-                border: 1px solid rgba(120, 125, 255, 0.14);
-                padding: 1.35rem 1.2rem;
-                border-radius: 22px;
-                box-shadow: 0 18px 40px rgba(71, 85, 160, 0.10);
-                margin-bottom: 1rem;
-            }
-            .hero-title {
-                font-size: 2rem;
-                font-weight: 800;
-                line-height: 1.15;
-                margin-bottom: 0.35rem;
-                color: #20243a;
-            }
-            .hero-sub {
-                color: #58607a;
-                font-size: 1rem;
-                margin-bottom: 0;
-            }
-            .mini-badge {
-                display: inline-block;
-                padding: 0.28rem 0.7rem;
-                border-radius: 999px;
-                background: linear-gradient(90deg, rgba(122, 92, 255, 0.14), rgba(40, 170, 255, 0.14));
-                color: #4b4f7c;
-                font-size: 0.86rem;
-                font-weight: 600;
-                margin-bottom: 0.75rem;
-            }
-            .section-title {
-                font-size: 1.15rem;
-                font-weight: 700;
-                color: #272b45;
-                margin-bottom: 0.4rem;
-            }
-            .soft-text {
-                color: #66708a;
-                margin-bottom: 0.6rem;
-            }
-            .metric-box {
-                background: linear-gradient(180deg, #ffffff 0%, #f8f9ff 100%);
-                border: 1px solid rgba(90, 105, 210, 0.15);
-                border-radius: 18px;
-                padding: 0.9rem 1rem;
-                margin: 0.3rem 0;
-            }
-            .question-card {
-                background: rgba(255,255,255,0.92);
-                border: 1px solid rgba(110, 110, 190, 0.14);
-                border-radius: 18px;
-                padding: 1rem 1rem 0.4rem 1rem;
-                margin-bottom: 1rem;
-            }
-        </style>
-        """,
-        unsafe_allow_html=True,
+        '<div class="mini-badge">Psychological survey</div>',
+        unsafe_allow_html=True
     )
 
+    # Title (NOW INSIDE CARD ✅)
+    st.markdown(
+        '<div class="hero-title" style="text-align:center;">Peer comparison avoidance survey</div>',
+        unsafe_allow_html=True
+    )
+
+    # Subtitle
+    st.markdown(
+        '<div class="hero-sub">Step 1 of 2 · Personal information</div>',
+        unsafe_allow_html=True
+    )
+
+    st.markdown('<div class="soft-text">Enter your details to begin the questionnaire.</div>', unsafe_allow_html=True)
+
+    # Inputs
+    name = st.text_input("Surname and given name", placeholder="Enter full name")
+    dob = st.text_input("Date of birth", placeholder="YYYY-MM-DD")
+    student_id = st.text_input("Student ID", placeholder="Digits only")
+
+    # Button
+    start = st.button("Start questionnaire")
+
+    # Close card
+    st.markdown('</div>', unsafe_allow_html=True)
+
+    return name, dob, student_id, start
 
 def initialize_state() -> None:
     defaults: Dict[str, Any] = {
