@@ -609,14 +609,8 @@ def render_header(app: SurveyApp) -> None:
         <div class="hero">
             <div class="hero-grid">
                 <div>
-                    <div class="mini-badge">Psychological survey </div>
+                    <div class="mini-badge">Psychological survey</div>
                     <div class="hero-title">Peer comparison avoidance survey</div>
-                </div>
-                <div class="hero-panel">
-                    <div class="hero-stat">Questions</div>
-                    <div class="hero-big">{len(app.questions)}</div>
-                    <div class="hero-stat">Formats: TXT · CSV · JSON</div>
-                    <div class="hero-stat">Start with personal information, then move to the questionnaire.</div>
                 </div>
             </div>
         </div>
