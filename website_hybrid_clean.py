@@ -13,7 +13,7 @@ st.set_page_config(
     page_title="Peer comparison avoidance survey",
     page_icon="🧠",
     layout="centered",
-
+)
 
 # Embedded fallback questions remain in the code to demonstrate that
 # questions can be stored both externally and directly in the program.
