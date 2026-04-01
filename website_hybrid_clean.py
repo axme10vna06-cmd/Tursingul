@@ -7,6 +7,7 @@ from dataclasses import dataclass
 from datetime import date, datetime
 from typing import Any, Dict, List, Tuple
 
+
 import streamlit as st
 
 st.set_page_config(
