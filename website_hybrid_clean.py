@@ -682,7 +682,7 @@ def render_take_survey_page(app: SurveyApp) -> None:
             unsafe_allow_html=True,
         )
 
-         col_left, col_right = st.columns([1.45, 0.95])
+        col_left, col_right = st.columns([1.45, 0.95])
         with col_left:
             with st.form("participant_form"):
                 full_name: str = st.text_input("Surname and given name", placeholder="Enter full name")
