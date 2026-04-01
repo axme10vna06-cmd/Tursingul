@@ -488,7 +488,8 @@ def inject_styles() -> None:
             .block-container {
                 padding-top: 1.7rem;
                 padding-bottom: 2rem;
-                max-width: 920px;
+                max-width: 700px;
+                margin : auto;
             }
             .main-card {
                 background: rgba(255, 255, 255, 0.84);
