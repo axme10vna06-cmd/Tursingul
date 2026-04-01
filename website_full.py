@@ -315,7 +315,7 @@ class SurveyApp:
             "total_score": total_score,
             "psychological_state": self.calculate_result(total_score),
             "answers": structured_answers,
-            "submitted_at": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+            
         }
 
     def to_json(self, result: Dict[str, Any]) -> str:
@@ -330,7 +330,7 @@ class SurveyApp:
             f"Student ID: {result['student_id']}",
             f"Total Score: {result['total_score']}",
             f"Psychological State: {result['psychological_state']}",
-            f"Submitted At: {result['submitted_at']}",
+           
             "",
             "Answers:",
         ]
@@ -349,7 +349,7 @@ class SurveyApp:
         writer.writerow(["student_id", result["student_id"]])
         writer.writerow(["total_score", result["total_score"]])
         writer.writerow(["psychological_state", result["psychological_state"]])
-        writer.writerow(["submitted_at", result["submitted_at"]])
+       
         writer.writerow([])
         writer.writerow(["Question", "Selected Answer", "Score"])
         for answer in result["answers"]:
@@ -386,7 +386,7 @@ class SurveyApp:
             "student_id": "-",
             "total_score": "-",
             "psychological_state": "-",
-            "submitted_at": "-",
+           
             "answers": [],
         }
         lines: List[str] = [line.rstrip() for line in text.splitlines()]
@@ -407,8 +407,7 @@ class SurveyApp:
                 result["total_score"] = int(total_text) if total_text.isdigit() else total_text
             elif stripped.startswith("Psychological State:"):
                 result["psychological_state"] = stripped.split(":", 1)[1].strip()
-            elif stripped.startswith("Submitted At:"):
-                result["submitted_at"] = stripped.split(":", 1)[1].strip()
+            
             elif re.match(r"^\d+\.\s", stripped):
                 if current_question:
                     result["answers"].append(
@@ -446,7 +445,7 @@ class SurveyApp:
             "student_id": "-",
             "total_score": "-",
             "psychological_state": "-",
-            "submitted_at": "-",
+           
             "answers": [],
         }
 
