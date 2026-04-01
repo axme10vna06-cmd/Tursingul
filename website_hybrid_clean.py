@@ -682,16 +682,14 @@ def render_take_survey_page(app: SurveyApp) -> None:
             unsafe_allow_html=True,
         )
 
-        col_left, col_right = st.columns([1.45, 0.95])
-        with col_left:
-            with st.form("participant_form"):
-                full_name: str = st.text_input("Surname and given name", placeholder="Enter full name")
-                date_of_birth = st.date_input(
-                    "Date of birth",
-                    min_value=date(1900, 1, 1),
-                    max_value=date.today(),
-                    value=None,
-                    format="YYYY-MM-DD",
+         with st.form("participant_form"):
+            full_name = st.text_input("Surname and given name", placeholder="Enter full name")
+            date_of_birth = st.date_input(
+                "Date of birth",
+                min_value=date(1900, 1, 1),
+                max_value=date.today(),
+                value=None,
+                format="YYYY-MM-DD",
                 )
                 student_id: str = st.text_input("Student ID", placeholder="Digits only")
                 start_clicked: bool = st.form_submit_button("Start questionnaire", use_container_width=True)
