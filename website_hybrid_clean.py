@@ -488,7 +488,7 @@ def inject_styles() -> None:
             .block-container {
                 padding-top: 1.7rem;
                 padding-bottom: 2rem;
-                max-width: 700px;
+                max-width: 900px;
                 margin : auto;
             }
             .main-card {
