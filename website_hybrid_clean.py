@@ -232,12 +232,12 @@ class SurveyApp:
         self.question_file: str = question_file
         self.questions: List[Question] = self.load_questions()
         self.result_bands: List[Tuple[range, str]] = [
-            (range(20, 36), "Excellent Personal Focus - strong self-growth mindset, very little unhealthy comparison"),
-            (range(36, 51), "Healthy Progress Orientation - mostly focused on personal goals with only occasional comparison"),
-            (range(51, 66), "Mild Comparison Tendency - comparison with others occurs but still able to focus on self-progress"),
-            (range(66, 81), "Moderate Comparison Strain - comparison begins to impact motivation, confidence, satisfaction"),
-            (range(81, 91), "High Comparison Pressure - frequent comparison with others occurs with reduced self-focus and increasing strain"),
-            (range(91, 101), "Critical Comparison Pattern - strong dependency on others' achievements with significant impact on self-esteem and motivation"),
+            (range(20, 36), "Excellent personal focus - strong self-growth mindset, very little unhealthy comparison"),
+            (range(36, 51), "Healthy progress orientation - mostly focused on personal goals with only occasional comparison"),
+            (range(51, 66), "Mild comparison tendency - comparison with others occurs but still able to focus on self-progress"),
+            (range(66, 81), "Moderate comparison strain - comparison begins to impact motivation, confidence, satisfaction"),
+            (range(81, 91), "High comparison pressure - frequent comparison with others occurs with reduced self-focus and increasing strain"),
+            (range(91, 101), "Critical comparison pattern - strong dependency on others' achievements with significant impact on self-esteem and motivation"),
         ]
 
         # Extra variable types included for marking criterion visibility.
@@ -315,7 +315,6 @@ class SurveyApp:
             "total_score": total_score,
             "psychological_state": self.calculate_result(total_score),
             "answers": structured_answers,
-            "submitted_at": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
         }
 
     def to_json(self, result: Dict[str, Any]) -> str:
@@ -323,14 +322,13 @@ class SurveyApp:
 
     def to_txt(self, result: Dict[str, Any]) -> str:
         lines: List[str] = [
-            "Peer Comparison Avoidance Survey Result",
+            "Peer comparison avoidance survey result",
             "=" * 40,
             f"Name: {result['full_name']}",
             f"Date of Birth: {result['date_of_birth']}",
             f"Student ID: {result['student_id']}",
             f"Total Score: {result['total_score']}",
             f"Psychological State: {result['psychological_state']}",
-            f"Submitted At: {result['submitted_at']}",
             "",
             "Answers:",
         ]
@@ -349,7 +347,6 @@ class SurveyApp:
         writer.writerow(["student_id", result["student_id"]])
         writer.writerow(["total_score", result["total_score"]])
         writer.writerow(["psychological_state", result["psychological_state"]])
-        writer.writerow(["submitted_at", result["submitted_at"]])
         writer.writerow([])
         writer.writerow(["Question", "Selected Answer", "Score"])
         for answer in result["answers"]:
@@ -386,7 +383,6 @@ class SurveyApp:
             "student_id": "-",
             "total_score": "-",
             "psychological_state": "-",
-            "submitted_at": "-",
             "answers": [],
         }
         lines: List[str] = [line.rstrip() for line in text.splitlines()]
@@ -407,8 +403,6 @@ class SurveyApp:
                 result["total_score"] = int(total_text) if total_text.isdigit() else total_text
             elif stripped.startswith("Psychological State:"):
                 result["psychological_state"] = stripped.split(":", 1)[1].strip()
-            elif stripped.startswith("Submitted At:"):
-                result["submitted_at"] = stripped.split(":", 1)[1].strip()
             elif re.match(r"^\d+\.\s", stripped):
                 if current_question:
                     result["answers"].append(
@@ -446,7 +440,6 @@ class SurveyApp:
             "student_id": "-",
             "total_score": "-",
             "psychological_state": "-",
-            "submitted_at": "-",
             "answers": [],
         }
 
@@ -616,9 +609,8 @@ def render_header(app: SurveyApp) -> None:
         <div class="hero">
             <div class="hero-grid">
                 <div>
-                    <div class="mini-badge">Psychological survey · web app</div>
+                    <div class="mini-badge">Psychological survey </div>
                     <div class="hero-title">Peer comparison avoidance survey</div>
-                    <p class="hero-sub">A smoother hybrid version: stronger coursework logic with a cleaner, more appealing interface.</p>
                 </div>
                 <div class="hero-panel">
                     <div class="hero-stat">Questions</div>
@@ -643,7 +635,6 @@ def render_result_summary(result: Dict[str, Any]) -> None:
         <div class="metric-box"><b>Student ID:</b> {result['student_id']}</div>
         <div class="metric-box"><b>Total Score:</b> {result['total_score']}</div>
         <div class="metric-box"><b>Psychological State:</b> {result['psychological_state']}</div>
-        <div class="metric-box"><b>Submitted At:</b> {result['submitted_at']}</div>
         """,
         unsafe_allow_html=True,
     )
@@ -709,20 +700,6 @@ def render_take_survey_page(app: SurveyApp) -> None:
                 )
                 student_id: str = st.text_input("Student ID", placeholder="Digits only")
                 start_clicked: bool = st.form_submit_button("Start questionnaire", use_container_width=True)
-
-        with col_right:
-            st.markdown(
-                f"""
-                <div class="tip-card">
-                    <div class="section-title">Before you begin</div>
-                    <p class="soft-text">• {len(app.questions)} original questions</p>
-                    <p class="soft-text">• 5 answer options for each item</p>
-                    <p class="soft-text">• Result can be saved as TXT, CSV, or JSON</p>
-                    <p class="soft-text">• Questions load from an external file with a built-in fallback</p>
-                </div>
-                """,
-                unsafe_allow_html=True,
-            )
 
         st.markdown('</div>', unsafe_allow_html=True)
 
