@@ -9,6 +9,11 @@ from typing import Any, Dict, List, Tuple
 
 import streamlit as st
 
+st.set_page_config(
+    page_title="Peer comparison avoidance survey",
+    page_icon="🧠",
+    layout="centered",
+
 
 # Embedded fallback questions remain in the code to demonstrate that
 # questions can be stored both externally and directly in the program.
@@ -480,112 +485,61 @@ def inject_styles() -> None:
         """
         <style>
             .stApp {
-                background:
-                    radial-gradient(circle at top left, rgba(161, 196, 253, 0.38), transparent 28%),
-                    radial-gradient(circle at top right, rgba(194, 233, 251, 0.34), transparent 32%),
-                    linear-gradient(135deg, #eef4ff 0%, #f7f1ff 48%, #fffaf4 100%);
-            }
-            .block-container {
-                padding-top: 1.7rem;
-                padding-bottom: 2rem;
-                max-width: 900px;
-                margin : auto;
+                background: linear-gradient(135deg, #eef4ff 0%, #f8f4ff 45%, #fffaf4 100%);
             }
             .main-card {
-                background: rgba(255, 255, 255, 0.84);
-                backdrop-filter: blur(12px);
+                background: rgba(255, 255, 255, 0.88);
                 border: 1px solid rgba(120, 125, 255, 0.14);
                 padding: 1.35rem 1.2rem;
-                border-radius: 24px;
+                border-radius: 22px;
                 box-shadow: 0 18px 40px rgba(71, 85, 160, 0.10);
                 margin-bottom: 1rem;
             }
-            .hero {
-                padding: 1.55rem 1.35rem;
-                background: linear-gradient(135deg, rgba(255,255,255,0.88), rgba(255,255,255,0.72));
-                border: 1px solid rgba(120, 125, 255, 0.12);
-                border-radius: 28px;
-                box-shadow: 0 18px 44px rgba(71, 85, 160, 0.10);
-                margin-bottom: 1rem;
-            }
-            .hero-grid {
-                display: grid;
-                grid-template-columns: 1.55fr 0.95fr;
-                gap: 1rem;
-                align-items: center;
-            }
-            .mini-badge {
-                display: inline-block;
-                padding: 0.32rem 0.78rem;
-                border-radius: 999px;
-                background: linear-gradient(90deg, rgba(122, 92, 255, 0.14), rgba(40, 170, 255, 0.14));
-                color: #4b4f7c;
-                font-size: 0.86rem;
-                font-weight: 700;
-                margin-bottom: 0.78rem;
-            }
             .hero-title {
-                font-size: 2.05rem;
+                font-size: 2rem;
                 font-weight: 800;
-                line-height: 1.08;
-                margin-bottom: 0.4rem;
+                line-height: 1.15;
+                margin-bottom: 0.35rem;
                 color: #20243a;
             }
             .hero-sub {
                 color: #58607a;
                 font-size: 1rem;
-                margin-bottom: 0.15rem;
+                margin-bottom: 0;
             }
-            .hero-panel {
-                background: linear-gradient(180deg, rgba(255,255,255,0.95), rgba(245,247,255,0.9));
-                border: 1px solid rgba(90, 105, 210, 0.12);
-                border-radius: 22px;
-                padding: 1rem;
-            }
-            .hero-stat {
-                font-size: 0.92rem;
-                color: #5c6784;
-                margin-bottom: 0.35rem;
-            }
-            .hero-big {
-                font-size: 1.65rem;
-                font-weight: 800;
-                color: #2a3357;
-                margin-bottom: 0.3rem;
+            .mini-badge {
+                display: inline-block;
+                padding: 0.28rem 0.7rem;
+                border-radius: 999px;
+                background: linear-gradient(90deg, rgba(122, 92, 255, 0.14), rgba(40, 170, 255, 0.14));
+                color: #4b4f7c;
+                font-size: 0.86rem;
+                font-weight: 600;
+                margin-bottom: 0.75rem;
             }
             .section-title {
                 font-size: 1.15rem;
                 font-weight: 700;
                 color: #272b45;
-                margin-bottom: 0.35rem;
+                margin-bottom: 0.4rem;
             }
             .soft-text {
                 color: #66708a;
-                margin-bottom: 0.55rem;
+                margin-bottom: 0.6rem;
             }
             .metric-box {
                 background: linear-gradient(180deg, #ffffff 0%, #f8f9ff 100%);
                 border: 1px solid rgba(90, 105, 210, 0.15);
                 border-radius: 18px;
                 padding: 0.9rem 1rem;
-                margin: 0.32rem 0;
+                margin: 0.3rem 0;
             }
             .question-card {
-                background: rgba(255,255,255,0.94);
+                background: rgba(255,255,255,0.92);
                 border: 1px solid rgba(110, 110, 190, 0.14);
-                border-radius: 20px;
-                padding: 1rem 1rem 0.45rem 1rem;
-                margin-bottom: 0.95rem;
-                box-shadow: 0 10px 24px rgba(90, 105, 210, 0.06);
-            }
-            .tip-card {
-                background: linear-gradient(135deg, rgba(255,255,255,0.94), rgba(244,248,255,0.92));
-                border: 1px solid rgba(90, 105, 210, 0.12);
                 border-radius: 18px;
-                padding: 0.95rem 1rem;
-            }
-            @media (max-width: 900px) {
-                .hero-grid { grid-template-columns: 1fr; }
+                padding: 1rem 1rem 0.4rem 1rem;
+                margin-bottom: 1rem;
             }
         </style>
         """,
